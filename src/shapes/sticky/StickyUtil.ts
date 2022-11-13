@@ -22,10 +22,18 @@ export class StickyUtil extends CustomShapeUtil<T, E> {
 
   hideResizeHandles = false
 
-  // https://github.com/tldraw/tldraw/blob/main/packages/tldraw/src/state/shapes/StickyUtil/StickyUtil.ts
   getBounds = (shape: T) => {
-    return getBoundsRectangle(shape, this.boundsCache)
+    const [width, height] = shape.size
+    return {
+      minX: shape.point[0],
+      maxX: shape.point[0] + width,
+      minY: shape.point[1],
+      maxY: shape.point[1] + height,
+      width,
+      height,
+    }
   }
+
 
   /* ----------------- Custom Methods ----------------- */
 
