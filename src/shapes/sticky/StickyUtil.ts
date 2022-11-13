@@ -67,15 +67,19 @@ export class StickyUtil extends CustomShapeUtil<T, E> {
   ): Partial<T> => {
     console.log("transform-shape: ", shape)
     console.log("transform-bounds: ", bounds)
-    const point = Vec.toFixed([
-      bounds.minX +
-        (bounds.width - shape.size[0]) * (scaleX < 0 ? 1 - transformOrigin[0] : transformOrigin[0]),
-      bounds.minY +
-        (bounds.height - shape.size[1]) *
-           (scaleY < 0 ? 1 - transformOrigin[1] : transformOrigin[1]),
-    ])
-    return {
-      point,
+
+    if (transformOrigin) {
+
+      const point = Vec.toFixed([
+        bounds.minX +
+          (bounds.width - shape.size[0]) * (scaleX < 0 ? 1 - transformOrigin[0] : transformOrigin[0]),
+        bounds.minY +
+          (bounds.height - shape.size[1]) *
+             (scaleY < 0 ? 1 - transformOrigin[1] : transformOrigin[1]),
+      ])
+      return {
+        point,
+      }
     }
   }
 
